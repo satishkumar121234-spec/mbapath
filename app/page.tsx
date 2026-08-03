@@ -1,0 +1,15 @@
+import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
+import Stats from "../components/Stats";
+import Footer from "../components/Footer";
+
+export default function HomePage() {
+  return (
+    <main className="min-h-screen bg-slate-950">
+      <Navbar />
+      <Hero />
+      <Stats />
+      <Footer />
+    </main>
+  );
+}
