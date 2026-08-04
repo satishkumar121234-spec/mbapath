@@ -2,9 +2,9 @@
 
 import { motion } from "framer-motion";
 
-type PredictionMeterProps = {
+interface PredictionMeterProps {
   percentile: number;
-};
+}
 
 export default function PredictionMeter({
   percentile,

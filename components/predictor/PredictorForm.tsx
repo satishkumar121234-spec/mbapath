@@ -7,8 +7,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export default function PredictorForm() {
-  const [percentile, setPercentile] = useState("");
+  interface PredictorFormProps {
+  percentile: number;
+  setPercentile: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export default function PredictorForm({
+  percentile,
+  setPercentile,
+}: PredictorFormProps) {
 
   return (
     <Card className="w-full max-w-5xl mx-auto mt-12 border-white/10 bg-slate-900/60 backdrop-blur-xl">
@@ -35,8 +42,10 @@ export default function PredictorForm() {
             <Label>CAT Percentile</Label>
             <Input
               placeholder="98.42"
-              value={percentile}
-              onChange={(e) => setPercentile(e.target.value)}
+              value={percentile || ""}
+              onChange={(e) =>
+                 setPercentile(Number(e.target.value) || 0)
+              }
             />
           </div>
 
