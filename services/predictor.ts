@@ -1,12 +1,82 @@
-import { mockPrediction } from "@/data/mockPrediction";
-import { PredictorInput, PredictorResult } from "@/types/predictor";
+import { PredictorInput, PredictorResult, CollegePrediction } from "@/types/predictor";
+
+function buildPredictions(percentile: number): CollegePrediction[] {
+  return [
+    {
+      college: "IIM Ahmedabad",
+      probability: percentile >= 99
+        ? 35
+        : percentile >= 98
+        ? 18
+        : percentile >= 95
+        ? 5
+        : 0,
+      category: "Dream",
+    },
+    {
+      college: "IIM Bangalore",
+      probability: percentile >= 99
+        ? 40
+        : percentile >= 98
+        ? 24
+        : percentile >= 95
+        ? 8
+        : 1,
+      category: "Dream",
+    },
+    {
+      college: "IIM Lucknow",
+      probability: percentile >= 98
+        ? 74
+        : percentile >= 95
+        ? 55
+        : percentile >= 90
+        ? 28
+        : 8,
+      category: "Target",
+    },
+    {
+      college: "IIM Kozhikode",
+      probability: percentile >= 98
+        ? 79
+        : percentile >= 95
+        ? 62
+        : percentile >= 90
+        ? 35
+        : 12,
+      category: "Target",
+    },
+    {
+      college: "MDI Gurgaon",
+      probability: percentile >= 95
+        ? 95
+        : percentile >= 90
+        ? 82
+        : percentile >= 85
+        ? 58
+        : 30,
+      category: "Safe",
+    },
+    {
+      college: "IIFT Delhi",
+      probability: percentile >= 95
+        ? 92
+        : percentile >= 90
+        ? 76
+        : percentile >= 85
+        ? 50
+        : 24,
+      category: "Safe",
+    },
+  ];
+}
 
 export function predictProfile(
   input: PredictorInput
 ): PredictorResult {
   const explanation: string[] = [];
 
-  // Percentile rules
+  // Percentile explanation
   if (input.percentile >= 99) {
     explanation.push("Exceptional CAT percentile for top IIM consideration.");
   } else if (input.percentile >= 95) {
@@ -17,7 +87,7 @@ export function predictProfile(
     explanation.push("CAT percentile is below the typical range for older IIMs.");
   }
 
-  // Work experience rules
+  // Work experience explanation
   if (input.workExperience >= 24) {
     explanation.push("Meaningful work experience strengthens your profile.");
   } else if (input.workExperience >= 12) {
@@ -26,7 +96,7 @@ export function predictProfile(
     explanation.push("Limited work experience may reduce profile competitiveness.");
   }
 
-  // Academic rules
+  // Academic explanation
   const academicAverage =
     (input.class10 + input.class12 + input.graduation) / 3;
 
@@ -48,8 +118,8 @@ export function predictProfile(
   confidence = Math.max(40, Math.min(95, confidence));
 
   return {
-    ...mockPrediction,
     confidence,
+    predictions: buildPredictions(input.percentile),
     explanation,
   };
 }
