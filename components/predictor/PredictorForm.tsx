@@ -18,12 +18,14 @@ interface PredictorFormProps {
   profile: PredictorInput;
   setProfile: React.Dispatch<React.SetStateAction<PredictorInput>>;
   onPredict: () => void;
+  isPredicting: boolean;
 }
 
 export default function PredictorForm({
   profile,
   setProfile,
   onPredict,
+  isPredicting,
 }: PredictorFormProps) {
   const [error, setError] = useState("");
     const updateField = <K extends keyof PredictorInput>(
@@ -212,6 +214,7 @@ export default function PredictorForm({
 
       <Button
         className="mt-8 w-full"
+        disabled={isPredicting}
         onClick={() => {
           const validationError = validateForm();
 
@@ -223,8 +226,8 @@ export default function PredictorForm({
           setError("");
           onPredict();
         }}
-     >
-        Predict My Chances
+       >
+        {isPredicting ? "Predicting..." : "Predict My Chances"}
        </Button>
        {error && (
          <p className="mt-3 text-sm text-red-400">

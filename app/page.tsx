@@ -26,10 +26,18 @@ export default function HomePage() {
   });
 
   const [result, setResult] = useState(() => predictProfile(profile));
+  const [isPredicting, setIsPredicting] = useState(false);
 
-  const handlePredict = () => {
+  const handlePredict = async () => {
+    setIsPredicting(true);
+
+    // Simulate prediction processing time
+    await new Promise((resolve) => setTimeout(resolve, 800));
+
     const prediction = predictProfile(profile);
     setResult(prediction);
+
+    setIsPredicting(false);
   };
 
   return (
@@ -38,11 +46,12 @@ export default function HomePage() {
 
       <Hero />
 
-      <PredictorForm
+     <PredictorForm
         profile={profile}
         setProfile={setProfile}
         onPredict={handlePredict}
-      />
+        isPredicting={isPredicting}
+     />
 
       <PredictionMeter percentile={profile.percentile} />
 
