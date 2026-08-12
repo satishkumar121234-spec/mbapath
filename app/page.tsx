@@ -24,17 +24,17 @@ export default function HomePage() {
     graduation: 82,
     workExperience: 24,
   });
-
+  const [predictedPercentile, setPredictedPercentile] = useState(profile.percentile);
   const [result, setResult] = useState<ReturnType<typeof predictProfile> | null>(null);
   const [isPredicting, setIsPredicting] = useState(false);
 
   const handlePredict = async () => {
     setIsPredicting(true);
 
-    // Simulate prediction processing time
     await new Promise((resolve) => setTimeout(resolve, 800));
 
     const prediction = predictProfile(profile);
+    setPredictedPercentile(profile.percentile);
     setResult(prediction);
 
     setIsPredicting(false);
@@ -53,7 +53,7 @@ export default function HomePage() {
         isPredicting={isPredicting}
      />
 
-      <PredictionMeter percentile={profile.percentile} />
+      <PredictionMeter percentile={predictedPercentile} />
 
       {result ? (
         <PredictionResults result={result} />

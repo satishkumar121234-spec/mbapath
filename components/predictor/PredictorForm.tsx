@@ -61,22 +61,22 @@ export default function PredictorForm({
   return "";
 };
   return (
-    <Card className="mx-auto mt-12 w-full max-w-5xl border-border bg-card">
+    <Card className="mx-auto mt-12 w-full max-w-5xl border border-white/10 bg-slate-900/80 text-white backdrop-blur-xl shadow-2xl">
       <CardHeader>
-        <CardTitle className="text-3xl">
+        <CardTitle className="text-3xl text-white">
           Predict Your Chances
         </CardTitle>
 
-        <p className="text-muted-foreground mt-2">
+        <p className="mt-2 text-slate-400">
           Fill in your profile to estimate your MBA interview call probability.
         </p>
       </CardHeader>
 
-      <CardContent>
+      <CardContent className="px-4 sm:px-6">
         <div className="grid gap-6 md:grid-cols-2">
 
           <div>
-            <Label>CAT Year</Label>
+            <Label className="text-slate-200">CAT Year</Label>
 
             <Select
               value={String(profile.catYear)}
@@ -98,9 +98,9 @@ export default function PredictorForm({
           </div>
 
           <div>
-            <Label htmlFor="percentile">CAT Percentile</Label>
+            <Label className="text-slate-200" htmlFor="percentile">CAT Percentile</Label>
 
-            <Input
+            <Input className="text-white"
               id="percentile"
               type="number"
               step="0.01"
@@ -112,7 +112,7 @@ export default function PredictorForm({
           </div>
 
           <div>
-             <Label>Category</Label>
+             <Label className="text-slate-200">Category</Label>
 
             <Select
               value={profile.category}
@@ -136,7 +136,7 @@ export default function PredictorForm({
           </div>
 
          <div>
-           <Label>Gender</Label>
+           <Label className="text-slate-200">Gender</Label>
 
            <Select
               value={profile.gender}
@@ -157,9 +157,9 @@ export default function PredictorForm({
          </div>
 
           <div>
-            <Label htmlFor="class10">10th Percentage</Label>
+            <Label className="text-slate-200" htmlFor="class10">10th Percentage</Label>
 
-            <Input
+            <Input className="text-white"
               id="class10"
               type="number"
               value={profile.class10}
@@ -170,9 +170,9 @@ export default function PredictorForm({
           </div>
 
           <div>
-            <Label htmlFor="class12">12th Percentage</Label>
+            <Label className="text-slate-200" htmlFor="class12">12th Percentage</Label>
 
-            <Input
+            <Input className="text-white"
               id="class12"
               type="number"
               value={profile.class12}
@@ -183,9 +183,9 @@ export default function PredictorForm({
           </div>
 
           <div>
-            <Label htmlFor="graduation">Graduation Percentage</Label>
+            <Label className="text-slate-200" htmlFor="graduation">Graduation Percentage</Label>
 
-            <Input
+            <Input className="text-white"
               id="graduation"
               type="number"
               value={profile.graduation}
@@ -196,11 +196,11 @@ export default function PredictorForm({
           </div>
 
           <div>
-            <Label htmlFor="workExperience">
+            <Label className="text-slate-200" htmlFor="workExperience">
               Work Experience (Months)
             </Label>
 
-            <Input
+            <Input className="text-white"
               id="workExperience"
               type="number"
               value={profile.workExperience}
@@ -213,7 +213,7 @@ export default function PredictorForm({
         </div>
 
       <Button
-        className="mt-8 w-full"
+        className="mt-8 h-12 w-full text-base font-semibold"
         disabled={isPredicting}
         onClick={() => {
           const validationError = validateForm();

@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 
 interface PredictionMeterProps {
   percentile: number;
@@ -28,7 +27,7 @@ export default function PredictionMeter({
             MBAPath Prediction Meter
           </p>
 
-          <h2 className="mt-3 text-4xl font-bold text-white">
+          <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
             Estimated CAT Strength
           </h2>
 
@@ -37,46 +36,42 @@ export default function PredictionMeter({
           </p>
         </div>
 
-        <div className="relative mt-16 flex justify-center">
+      <div className="relative mt-16 flex justify-center">
+  <div className="relative aspect-square w-72 max-w-[85vw]">
 
-          <div className="relative h-72 w-72">
+    {/* Background ring */}
+    <div className="absolute inset-0 rounded-full border-[18px] border-slate-800" />
 
-            <div className="absolute inset-0 rounded-full border-[18px] border-slate-800" />
+    {/* Colored ring */}
+    <div
+      className="absolute inset-0 rounded-full border-[18px] border-transparent"
+      style={{
+        borderTopColor: "#ef4444",
+        borderRightColor: "#f59e0b",
+        borderBottomColor: "#22c55e",
+        transform: "rotate(-45deg)",
+      }}
+    />
 
-            <div
-              className="absolute inset-0 rounded-full border-[18px] border-transparent"
-              style={{
-                borderTopColor: "#ef4444",
-                borderRightColor: "#f59e0b",
-                borderBottomColor: "#22c55e",
-                transform: "rotate(-45deg)",
-              }}
-            />
+    {/* Needle */}
+    <div
+      className="absolute inset-0 transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]"
+      style={{
+        transform: `rotate(${rotation}deg)`,
+      }}
+    >
+      <div className="absolute left-1/2 top-1/2 h-[42%] w-1 -translate-x-1/2 -translate-y-full rounded-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.8)]" />
+    </div>
 
-            <motion.div
-              animate={{
-                rotate: rotation,
-              }}
-              transition={{
-                duration: 1.4,
-              }}
-              className="absolute left-1/2 top-1/2 origin-bottom"
-              style={{
-                width: 4,
-                height: 110,
-                background: "white",
-                transform: "translate(-50%, -100%)",
-              }}
-            />
+    {/* Center cap */}
+    <div className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-slate-900 bg-white shadow-lg" />
 
-            <div className="absolute left-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
-
-          </div>
-        </div>
+  </div>
+</div>
 
         <div className="mt-10 text-center">
 
-          <div className="text-6xl font-bold text-white">
+          <div className="text-5xl font-bold text-white sm:text-6xl">
             {percentile.toFixed(2)}
           </div>
 
