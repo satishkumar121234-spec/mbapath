@@ -22,7 +22,7 @@ export default function CollegeCard({
 }: CollegeCardProps) {
   return (
     <Card className="border-border bg-card transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
-      <CardContent className="flex items-center justify-between p-5">
+      <CardContent className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
 
         <div>
           <h3 className="text-lg font-semibold">
@@ -36,7 +36,7 @@ export default function CollegeCard({
           </span>
         </div>
 
-        <div className="text-right">
+        <div className="text-left sm:text-right">
           <div className="text-3xl font-bold">
             {probability}%
           </div>
