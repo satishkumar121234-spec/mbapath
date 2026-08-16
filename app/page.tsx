@@ -12,7 +12,7 @@ import Footer from "@/components/layout/Footer";
 
 import { predictProfile } from "@/services/predictor";
 import { PredictorInput } from "@/types/predictor";
-
+import CollegeComparison from "@/components/compare/CollegeComparison";
 export default function HomePage() {
   const [profile, setProfile] = useState<PredictorInput>({
     catYear: 2026,
@@ -107,6 +107,10 @@ export default function HomePage() {
     Last updated: August 2026
   </div>
 </section>
+     <CollegeComparison
+  firstCollegeId="iim-lucknow"
+  secondCollegeId="iim-kozhikode"
+/>
       <Stats />
 
       <Footer />

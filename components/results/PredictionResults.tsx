@@ -25,17 +25,17 @@ export default function PredictionResults({
   );
 
   return (
-    <Card className="mx-auto mt-12 w-full max-w-5xl">
+    <Card className="mx-auto mt-12 w-full max-w-5xl border-white/10 bg-slate-900/60 backdrop-blur-xl">
       <CardHeader>
         <CardTitle>Prediction Results</CardTitle>
 
         <ConfidenceBadge confidence={result.confidence} />
       </CardHeader>
 
-      <CardContent className="space-y-10">
+      <CardContent className="space-y-12 px-4 sm:px-6">
 
         <section>
-          <h2 className="mb-4 text-xl font-bold">
+          <h2 className="mb-4 text-lg font-semibold sm:text-xl">
             Dream Colleges
           </h2>
 
