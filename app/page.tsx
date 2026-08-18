@@ -107,10 +107,8 @@ export default function HomePage() {
     Last updated: August 2026
   </div>
 </section>
-     <CollegeComparison
-  firstCollegeId="iim-lucknow"
-  secondCollegeId="iim-kozhikode"
-/>
+     {result && <CollegeComparison result={result} />}
+
       <Stats />
 
       <Footer />
